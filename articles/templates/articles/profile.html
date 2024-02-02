@@ -1,0 +1,39 @@
+{% load static %}
+<link rel = "stylesheet" href = "{% static 'articles/styles/universal.css' %}">
+<link rel = "stylesheet" href = "{% static 'articles/styles/profile.css' %}">
+
+<!DOCTYPE html>
+<html>
+    <body>
+        <a id = "back" href = "{% url 'articles:frontpage' %}"> Back </a>
+        <header>
+            <img src = "{% static 'sample.png' %}">
+            <h1>Sam Hyde</h1>
+            <div>
+                <p> Subscribers: 228</p>
+                <p> Likes: 420</p>
+            </div>
+            <div>
+                <button>Subscribe</button>
+            </div>
+        </header>
+        <h1>Articles</h1>
+        <div id = "articles">
+            {% for i in range10 %}
+                <div class = "card">
+                    <h1><a href = "{% url 'articles:article' %}">Sample Title</a></h1>
+                    <a href="{% url 'articles:profile' %}">
+                        <img src="{% static 'sample.png' %}"> 
+                        <p>Author: Sam Hyde</p> 
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        <footer>
+            <p>Codeticles</p>
+            <img src="" alt="Github">
+            <img src="" alt="VK">
+            <img src="" alt="Telegram">
+        </footer>
+    </body>
+</html>

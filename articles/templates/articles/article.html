@@ -1,0 +1,37 @@
+{% load static %}
+<link rel = "stylesheet" href = "{% static 'articles/styles/universal.css' %}">
+<link rel = "stylesheet" href = "{% static 'articles/styles/article.css' %}">
+
+<!DOCTYPE html>
+<html>
+    <body>
+        <a id = "back" href = "{% url 'articles:frontpage' %}"> Back </a>
+        <header>
+            <h1>Sample title</h1>
+            <a href="{% url 'articles:profile' %}">
+                <img src="{% static 'sample.png' %}"> 
+                <p>Author: Sam Hyde</p> 
+                <p>Posted on 02/02/2024</p>
+            </a>
+        </header>
+        <div id = "article">
+            {% for i in range10 %}
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum eligendi a vitae facilis! Id quis nisi assumenda vitae reiciendis illum ratione, sed quod distinctio impedit unde ea necessitatibus explicabo tempore.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum eligendi a vitae facilis! Id quis nisi assumenda vitae reiciendis illum ratione, sed quod distinctio impedit unde ea necessitatibus explicabo tempore.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum eligendi a vitae facilis! Id quis nisi assumenda vitae reiciendis illum ratione, sed quod distinctio impedit unde ea necessitatibus explicabo tempore.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum eligendi a vitae facilis! Id quis nisi assumenda vitae reiciendis illum ratione, sed quod distinctio impedit unde ea necessitatibus explicabo tempore.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum eligendi a vitae facilis! Id quis nisi assumenda vitae reiciendis illum ratione, sed quod distinctio impedit unde ea necessitatibus explicabo tempore.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum eligendi a vitae facilis! Id quis nisi assumenda vitae reiciendis illum ratione, sed quod distinctio impedit unde ea necessitatibus explicabo tempore.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum eligendi a vitae facilis! Id quis nisi assumenda vitae reiciendis illum ratione, sed quod distinctio impedit unde ea necessitatibus explicabo tempore.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum eligendi a vitae facilis! Id quis nisi assumenda vitae reiciendis illum ratione, sed quod distinctio impedit unde ea necessitatibus explicabo tempore.
+                </p>
+            {% endfor %}
+        </div>
+        <footer>
+            <p>Codeticles</p>
+            <img src="" alt="Github">
+            <img src="" alt="VK">
+            <img src="" alt="Telegram">
+        </footer>
+    </body>
+</html>

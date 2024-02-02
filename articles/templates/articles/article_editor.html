@@ -1,0 +1,23 @@
+{% load static %}
+<link rel = "stylesheet" href = "{% static 'articles/styles/universal.css' %}">
+<link rel = "stylesheet" href = "{% static 'articles/styles/article_editor.css' %}">
+
+<!DOCTYPE html>
+<html>
+    <body>
+        <header>
+            <a href = "{% url 'articles:frontpage' %}"> Back </a>
+            <h1>Sample title</h1>
+            <button id = "save">Save</button>
+        </header>
+        <div id = content>
+        </div>
+        <div id = "navbar">
+            <button onclick = "addParagraph();">Add paragraph</button>
+            <button>Add title</button>
+            <button>Add code snippet</button>
+            <button>Add image</button>
+        </div>
+    </body>
+    <script src = "{% static 'articles/scripts/article_editor.js' %}" ></script>
+</html>
