@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
@@ -21,6 +22,3 @@ def profile(request):
         "range10": range(0, 20),
     }
     return render(request, 'articles/profile.html', context=context)
-
-def articleEditor(request):
-    return render(request, 'articles/article_editor.html')
