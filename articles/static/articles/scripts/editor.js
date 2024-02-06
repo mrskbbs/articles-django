@@ -1,12 +1,24 @@
 const content = document.querySelector("#content");
 function sendRequest(){
-    console.log("saving...");
-    // TODO: Construct JSON and send it to the api
-    
-    // for (var block of content.children){
-    //     for (var el of block.children){
-    //     }
-    // }
+    let packet = [];
+    let block_ind = 0;
+
+    //Construct a JSON packet
+    for (var block of content.children){
+        packet.push([]);
+        let el_ind = 0;
+
+        for (var el of block.children){
+            packet[block_ind].push({});
+            packet[block_ind][el_ind]["type"] = el.getAttribute("class");
+            packet[block_ind][el_ind]["content"] = el.value;
+            el_ind++;
+        }
+
+        block_ind++;
+    }
+
+    //TODO: Send a request to api
 }
 
 function elelmentBuilder(name, params){
@@ -25,7 +37,7 @@ function titleSpawn(){
 
     title = elelmentBuilder("textarea",
     {
-        "class": "title",
+        "class": "h1",
         "rows": 1,
     });
  
@@ -36,7 +48,7 @@ function titleSpawn(){
 function paragrapghSpawn(){
     par = elelmentBuilder("textarea",
     {
-        "class": "paragraph",
+        "class": "p",
         "rows": 10,  
     });
 
