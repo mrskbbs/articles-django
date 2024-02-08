@@ -1,23 +1,28 @@
 const content = document.querySelector("#content");
 function sendRequest(){
-    let packet = [];
+    let title = "Sample title";
+    let blocks = [];
     let block_ind = 0;
-
+    // TODO: Re-do the json packet
     //Construct a JSON packet
     for (var block of content.children){
-        packet.push([]);
+        blocks.push([]);
         let el_ind = 0;
 
         for (var el of block.children){
-            packet[block_ind].push({});
-            packet[block_ind][el_ind]["type"] = el.getAttribute("class");
-            packet[block_ind][el_ind]["content"] = el.value;
+            blocks[block_ind].push({});
+            blocks[block_ind][el_ind]["type"] = el.getAttribute("class");
+            blocks[block_ind][el_ind]["content"] = el.value;
             el_ind++;
         }
 
         block_ind++;
     }
-
+    let packet = {
+        "title" : title,
+        "blocks": blocks
+    };
+    console.log(packet);
     //TODO: Send a request to api
 }
 
