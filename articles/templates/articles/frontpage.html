@@ -7,7 +7,7 @@
     <body>
         <a href = "{% url 'articles:profile' %}" id = "profile"></a>
         <div id = "welcome">
-            <h1>Welcome to Codeticles!</h1>
+            <h1>Welcome {{user.username}} to Codeticles!</h1>
             <p>Explore wide range of articles on different coding related topics</p>
         </div>
         <h1>Trending</h1>
