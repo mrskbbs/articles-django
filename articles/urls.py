@@ -4,9 +4,10 @@ from . import views
 app_name = 'articles'
 urlpatterns = [
     path('' , views.frontpage, name = 'frontpage'),
-    path('article/', views.article,  name = 'article'),
+    path('profile/<str:username>/', views.profile,  name = 'profile'),
+    path('article/<str:article_pk>/', views.article,  name = 'article'),
     path('article/editor/', views.articleEditor, name = 'editor'),
-    path('auth/', views.auth, name = 'auth'),
-    path('login/', views.log, name = 'login'),
-    path('profile/', views.profile,  name = 'profile'),
+    path('signup/', views.sign_up, name = 'signup'),
+    path('login/', views.log_in, name = 'login'),
+    path('logout/', views.log_out, name = 'logout'),
 ]

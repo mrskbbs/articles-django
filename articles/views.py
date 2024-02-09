@@ -1,38 +1,40 @@
+import datetime
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .forms import RegisterForm
+from django.utils import timezone
+from .models import Article
+from .forms import LoginForm, RegisterForm
 
 # Create your views here.
 def frontpage(request):
     context = {
-        "range3": range(0,3),
-        "range10": range(0, 20),
+        "trending": Article.objects.filter(published__gte = timezone.now() - datetime.timedelta(days=1), published__lte = timezone.now())
     }
     return render(request, 'articles/frontpage.html', context = context)
 
-def article(request):
+def article(request, article_pk):
     context = {
-        "range3": range(0,3),
-        "range10": range(0, 20),
+        "article": Article.objects.get(url = article_pk),
     }
     return render(request, 'articles/article.html', context=context)
 
-def profile(request):
+def profile(request, username):
     context = {
-        "range3": range(0,3),
-        "range10": range(0, 20),
+        "user": User.objects.get(username = username),
+        "posts": Article.objects.filter(author = User.objects.get(username = username))
     }
     return render(request, 'articles/profile.html', context=context)
 
 def articleEditor(request):
     return render(request, 'articles/editor.html')
 
-def auth(request):
+def sign_up(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
+        print(form.error_messages)
         if form.is_valid():
             form.save()
 
@@ -43,21 +45,23 @@ def auth(request):
                 last_name = form.cleaned_data['last_name'],
                 password = form.cleaned_data['password1']
             )
-            # user = User.objects.create_user(
-            #     username = form.cleaned_data['username'],
-            #     email = form.cleaned_data['email'],
-            #     first_name = form.cleaned_data['first_name'],
-            #     last_name = form.cle['last_name'],
-            #     password = form.cleaned_data['password1']
-            # )
-            # user.save()
+            login(request, user)
+            
+            return redirect('articles:frontpage')
+    return render(request, 'articles/signup.html')
+
+def log_in(request):
+    if request.POST:
+        user = authenticate(
+            username = request.POST['username'],
+            password = request.POST['password']
+        )
+        if user: 
             login(request, user)
             return redirect('articles:frontpage')
-    return render(request, 'articles/auth.html')
+            
+    return render(request, 'articles/login.html')
 
-def log(request):
-    if request.POST:
-        # login user on error leave
-        return redirect('articles:frontpage')
-    else:    
-        return render(request, 'articles/login.html')
+def log_out(request):
+    logout(request)
+    return redirect('articles:frontpage')
